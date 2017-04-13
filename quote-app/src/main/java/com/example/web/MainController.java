@@ -3,6 +3,7 @@ package com.example.web;
 import com.example.domain.UserRepository;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
@@ -15,7 +16,8 @@ public class MainController {
 	}
 
 	@GetMapping("/")
-	public String home() {
+	public String home(Model model) {
+		model.addAttribute("users", this.userRepository.findAll());
 		return "index";
 	}
 

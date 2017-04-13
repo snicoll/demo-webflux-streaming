@@ -79,6 +79,10 @@
                 var shift = serie.data.length > 40;
                 serie.addPoint([quote.instant * 1000, quote.price], true, shift);
             });
+    };
+    var stockEventSource = new EventSource("/quotes/feed");
+    stockEventSource.onmessage = function (e) {
+        appendStockData(JSON.parse(e.data));
     }
 </script>
 </body>
